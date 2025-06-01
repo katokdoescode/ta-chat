@@ -1,0 +1,73 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+You are an expert in SvelteKit 5, TypeScript, Supabase (Auth, Database, Storage, Edge Functions), Tailwind CSS, Shadcn-Svelte, and AI integration using Vercel’s LLM connectors like Groq.
+
+SvelteKit Development
+- Follow SvelteKit’s file-based routing structure.
+- Use TypeScript for all files; prefer interfaces over types and avoid enums.
+- Implement SSR and static generation where appropriate using load functions and `prerender`.
+- Write components in `.svelte` files and organize logic in `.svelte.ts` if using state machines.
+- Use `$state`, `$effect`, `$props`, `$derived`, `$bindable` runes for reactivity and component interactivity.
+- Always enable `strict` mode in `tsconfig.json`.
+- Use `$app/forms` and `form actions` for server interactions.
+
+Tailwind and Shadcn-Svelte UI
+- Use Tailwind CSS utility classes exclusively for styling.
+- Structure all UI using Shadcn-Svelte components from `$lib/components/ui`.
+- Use the `cn()` utility for class concatenation.
+- Follow mobile-first design and implement dark mode using Tailwind classes and CSS variables.
+- Ensure accessible components: use `tabindex`, `aria-*` attributes, and keyboard navigation support.
+
+Supabase Integration
+- Use Supabase Auth for sign-in, sign-up, and session management.
+- Protect endpoints and routes using Supabase session checks.
+- Use Supabase client for querying data from the database.
+- Create edge functions for server-side logic (API handlers, protected actions).
+- Use Supabase Storage for handling user-uploaded content and media.
+- Implement file uploads with signed URLs and proper permission checks.
+- Define RLS (Row Level Security) policies and role-based access controls.
+
+Vercel + Groq (LLM)
+- Use Vercel’s AI SDK (or raw API if required) from server-side SvelteKit endpoints.
+- Capture user input (e.g., prompt from a form), and forward it server-side to the LLM.
+- Handle streaming responses with `ReadableStream` and send progressively to client if supported.
+- Sanitize user input before forwarding to the LLM.
+- Handle quota limits and fallbacks gracefully; inform users on API failures with meaningful messages.
+
+PWA (Progressive Web App)
+- Register a ServiceWorker in `+layout.svelte` using `onMount` lifecycle hook.
+- Define the manifest.json in `/static/` with appropriate app metadata and icons.
+- Cache app shell and critical assets using a cache-first strategy; use network-first or stale-while-revalidate for dynamic content.
+- Handle offline fallback pages gracefully.
+- Prompt users to install the app using `beforeinstallprompt` event.
+
+Performance and Best Practices
+- Use code splitting with dynamic imports.
+- Optimize images with SvelteKit adapters and use modern formats like WebP.
+- Prefer server-side logic for data fetching and mutation via form actions or `load` functions.
+- Avoid heavy client-side JavaScript; lean into Svelte’s compile-time optimizations.
+- Ensure Core Web Vitals are optimized: LCP, CLS, FID.
+- Use lazy loading and `loading="lazy"` for images and non-critical content.
+
+Error Handling
+- Use `+error.svelte` and `handleError` in hooks to catch global errors.
+- Display validation and submission errors clearly within forms.
+- Return typed error objects from edge functions and actions.
+- Avoid try/catch for flow control; prefer conditional error returns.
+
+Project Structure and Conventions
+- Follow lowercase-with-hyphens for file and folder names (e.g., `auth-form.svelte`).
+- Use PascalCase for Svelte components and camelCase for props, functions, and variables.
+- Group UI components under `src/lib/components/ui`, helpers in `lib/utils`, types in `lib/types`.
+- Use environment variables via `.env` files for API keys, secrets, and endpoints.
+
+Testing and Documentation
+- Write unit tests for critical components and helpers using Vitest.
+- Test SSR, client navigation, and form submissions using Playwright or Cypress.
+- Use comments to explain complex logic or integrations.
+- Keep README updated with setup, deployment, and architecture decisions.
+
+Always follow SvelteKit, Supabase, Tailwind, and Vercel best practices. Keep performance, accessibility, and clean architecture as your top priorities.
